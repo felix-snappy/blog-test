@@ -1,4 +1,4 @@
-import { defineContentConfig, defineCollection } from '@nuxt/content';
+import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
 export default defineContentConfig({
   collections: {
@@ -6,10 +6,19 @@ export default defineContentConfig({
       type: 'page',
       source: 'index.md'
     }),
+    blog: defineCollection({
+      type: 'page',
+      source: 'blog/*.md',
+      schema: z.object({
+        date: z.string()
+      })
+    }),
     news: defineCollection({
       type: 'page',
-      source: 'news/atlas-ice-launches-newest-product-the-chillaiz-ice-cup-designed-by-snappymob-fourdigit-malaysia.md'
+      source: 'news/*.md',
+      schema: z.object({
+        date: z.string(),
+      })
     }),
   }
-});
-
+})
